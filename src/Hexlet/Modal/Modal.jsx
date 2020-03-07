@@ -1,6 +1,7 @@
 import React from "react";
 
-// BEGIN (write your solution here)const Body = props => <p className="modal-body">{props.children}</p>;
+// BEGIN (write your solution here)
+const Body = props => <p className="modal-body">{props.children}</p>;
 const Footer = props => <p class="modal-footer">{props.children}</p>;
 const Header = props => (
   <div class="modal-header">
