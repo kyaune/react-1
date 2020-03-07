@@ -1,12 +1,7 @@
 import React from "react";
 
-// BEGIN (write your solution here)
-const Body = props => <p className="modal-body">{props.children}</p>;
-const Footer = props => (
-  <button type="button" class="modal-close-button btn btn-default">
-    {props.children}
-  </button>
-);
+// BEGIN (write your solution here)const Body = props => <p className="modal-body">{props.children}</p>;
+const Footer = props => <p class="modal-footer">{props.children}</p>;
 const Header = props => (
   <div class="modal-header">
     <div class="modal-title">{props.children}</div>
@@ -25,14 +20,9 @@ export default class Modal extends React.Component {
       display: "none"
     };
     return (
-      <div>
-        <button type="button" className="modal-open-button btn btn-danger">
-          Open
-        </button>
-        <div className="modal fade show" style={divStyleNone}>
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">{this.props.children}</div>
-          </div>
+      <div className="modal" style={divStyleNone}>
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">{this.props.children}</div>
         </div>
       </div>
     );
@@ -42,14 +32,9 @@ export default class Modal extends React.Component {
       display: "block"
     };
     return (
-      <div>
-        <button type="button" className="modal-open-button btn btn-danger">
-          Open
-        </button>
-        <div className="modal" style={divStyleBlock}>
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">{this.props.children}</div>
-          </div>
+      <div className="modal fade show" style={divStyleBlock}>
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">{this.props.children}</div>
         </div>
       </div>
     );
