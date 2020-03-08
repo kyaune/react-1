@@ -1,47 +1,49 @@
 import React from "react";
+import cn from "classnames";
 
 // BEGIN (write your solution here)
-const Body = props => <p className="modal-body">{props.children}</p>;
-const Footer = props => <p class="modal-footer">{props.children}</p>;
-const Header = props => (
-  <div class="modal-header">
-    <div class="modal-title">{props.children}</div>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">×</span>
-    </button>
-  </div>
-);
+const Body = ({ children }) => <p className="modal-body">{children}</p>;
+const Footer = ({ children }) => <p className="modal-footer">{children}</p>;
+const Header = ({ children, toggle }) => {
+  return (
+    <div className="modal-header">
+      <div className="modal-title">{children}</div>
+      <button
+        type="button"
+        className="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        onClick={toggle}
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+  );
+};
 
 export default class Modal extends React.Component {
   static Header = Header;
   static Body = Body;
   static Footer = Footer;
-  renderClosed() {
-    const divStyleNone = {
-      display: "none"
-    };
-    return (
-      <div className="modal" style={divStyleNone}>
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">{this.props.children}</div>
-        </div>
-      </div>
-    );
-  }
-  renderOpen() {
-    const divStyleBlock = {
-      display: "block"
-    };
-    return (
-      <div className="modal fade show" style={divStyleBlock}>
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">{this.props.children}</div>
-        </div>
-      </div>
-    );
-  }
+
   render() {
-    return this.props.isOpen ? this.renderOpen() : this.renderClosed();
+    const divStyle = {
+      display: this.props.isOpen ? "block" : "none"
+    };
+    const { children } = this.props;
+    const classes = cn({
+      modal: true,
+      fade: this.props.isOpen,
+      show: this.props.isOpen
+    });
+
+    return (
+      <div className={classes} style={divStyle}>
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">{children}</div>
+        </div>
+      </div>
+    );
   }
 }
 // END

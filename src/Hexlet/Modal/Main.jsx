@@ -6,6 +6,7 @@ export default class Main extends React.Component {
 
   toggle = e => {
     e.preventDefault();
+    console.log("111");
     this.setState({
       modal: !this.state.modal
     });
